@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:motivational_phrases/models/phrase_model.dart';
 import 'package:motivational_phrases/services/phrase_service.dart';
+import 'package:share_plus/share_plus.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,9 +54,32 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+
+    Future<void> sharePhrase() async {
+      ShareParams params = ShareParams(
+        text: '${phrase.phrase} - ${phrase.author}',
+      );
+      final ShareResult result = await SharePlus.instance.share(params);
+
+      if (result.status == ShareResultStatus.success) {
+        SnackBar snackBar = SnackBar(
+          backgroundColor: scheme.primaryFixedDim,
+          content: Text(
+            '¡Se compartió la frase!',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: scheme.onPrimaryContainer),
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    }
+
     return Scaffold(
       backgroundColor: scheme.onPrimary,
       appBar: AppBar(
+        actions: [
+          IconButton(icon: Icon(Icons.ios_share), onPressed: sharePhrase),
+        ],
         title: Text(widget.title),
         backgroundColor: scheme.onSecondary,
       ),
