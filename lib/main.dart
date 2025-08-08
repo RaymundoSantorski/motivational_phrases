@@ -45,6 +45,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    ColorScheme scheme = Theme.of(context).colorScheme;
+    return Scaffold(
+      backgroundColor: scheme.onPrimaryFixedVariant,
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: scheme.primary,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: scheme.onPrimary,
+        onPressed: () {},
+        child: Icon(Icons.refresh, size: 40),
+      ),
+    );
   }
 }
