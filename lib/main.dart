@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:motivational_phrases/models/phrase_model.dart';
 import 'package:motivational_phrases/services/phrase_service.dart';
@@ -35,9 +37,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Phrase phrase = PhraseService.getNextPhrase();
+  bool _visible = true;
+
   void getPhrase() {
     setState(() {
       phrase = PhraseService.getNextPhrase();
+    });
+    toggleVisibility();
+  }
+
+  void toggleVisibility() {
+    setState(() {
+      _visible = !_visible;
     });
   }
 
@@ -52,23 +63,32 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: scheme.onPrimary,
-        onPressed: getPhrase,
+        onPressed: () async {
+          toggleVisibility();
+        },
         child: Icon(Icons.arrow_forward, size: 40),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                phrase.phrase,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              Text(phrase.author),
-              // SizedBox(height: 150),
-            ],
+          child: AnimatedOpacity(
+            duration: Duration(milliseconds: 400),
+            opacity: _visible ? 1.0 : 0.0,
+            onEnd: () {
+              if (!_visible) getPhrase();
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  phrase.phrase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                Text(phrase.author),
+                // SizedBox(height: 150),
+              ],
+            ),
           ),
         ),
       ),
