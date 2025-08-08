@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:motivational_phrases/models/phrase_model.dart';
+import 'package:motivational_phrases/services/phrase_service.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  phrases.init();
+  await PhraseService.init();
   runApp(const MyApp());
-}
-
-class phrases {
-  static late var data;
-  static Future<void> init() async {
-    final String response = await rootBundle.loadString('data/phrases.json');
-    data = await json.decode(response);
-    print(data);
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -43,6 +34,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Phrase phrase = PhraseService.getNextPhrase();
+  void getPhrase() {
+    setState(() {
+      phrase = PhraseService.getNextPhrase();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
@@ -57,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {},
         child: Icon(Icons.refresh, size: 40),
       ),
+      body: Text(phrase.author),
     );
   }
 }

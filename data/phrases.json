@@ -1,28 +1,28 @@
 [
     {
       "id": 1,
-      "frase": "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
-      "autor": "Robert Collier"
+      "phrase": "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+      "author": "Robert Collier"
     },
     {
       "id": 2,
-      "frase": "La única forma de hacer un gran trabajo es amar lo que haces.",
-      "autor": "Steve Jobs"
+      "phrase": "La única forma de hacer un gran trabajo es amar lo que haces.",
+      "author": "Steve Jobs"
     },
     {
       "id": 3,
-      "frase": "No te preocupes por los fracasos, preocúpate por las oportunidades que pierdes cuando no lo intentas.",
-      "autor": "Jack Canfield"
+      "phrase": "No te preocupes por los fracasos, preocúpate por las oportunidades que pierdes cuando no lo intentas.",
+      "author": "Jack Canfield"
     },
     {
       "id": 4,
-      "frase": "El futuro pertenece a aquellos que creen en la belleza de sus sueños.",
-      "autor": "Eleanor Roosevelt"
+      "phrase": "El futuro pertenece a aquellos que creen en la belleza de sus sueños.",
+      "author": "Eleanor Roosevelt"
     },
     {
       "id": 5,
-      "frase": "Cree que puedes y ya estarás a medio camino.",
-      "autor": "Theodore Roosevelt"
+      "phrase": "Cree que puedes y ya estarás a medio camino.",
+      "author": "Theodore Roosevelt"
     }
   ]
   
