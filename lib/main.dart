@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:motivational_phrases/models/phrase_model.dart';
 import 'package:motivational_phrases/services/phrase_service.dart';
 import 'package:share_plus/share_plus.dart';
+=======
+import 'package:motivational_phrases/services/phrase_service.dart';
+>>>>>>> Stashed changes
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+<<<<<<< Updated upstream
   await PhraseService.init();
+=======
+  PhraseService.init();
+>>>>>>> Stashed changes
   runApp(const MyApp());
 }
 
