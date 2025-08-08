@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      backgroundColor: scheme.onPrimaryFixedVariant,
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: scheme.primary,
