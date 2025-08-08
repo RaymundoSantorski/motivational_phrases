@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Phrases'),
     );
   }
 }
@@ -45,17 +45,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: scheme.onPrimaryFixedVariant,
+      backgroundColor: scheme.onPrimary,
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: scheme.primary,
+        backgroundColor: scheme.onSecondary,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: scheme.onPrimary,
-        onPressed: () {},
-        child: Icon(Icons.refresh, size: 40),
+        onPressed: getPhrase,
+        child: Icon(Icons.arrow_forward, size: 40),
       ),
-      body: Text(phrase.author),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                phrase.phrase,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              Text(phrase.author),
+              // SizedBox(height: 150),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
