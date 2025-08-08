@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  phrases.init();
   runApp(const MyApp());
+}
+
+class phrases {
+  static late var data;
+  static Future<void> init() async {
+    final String response = await rootBundle.loadString('data/phrases.json');
+    data = await json.decode(response);
+    print(data);
+  }
 }
 
 class MyApp extends StatelessWidget {
