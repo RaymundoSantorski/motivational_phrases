@@ -52,6 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         backgroundColor: scheme.primary,
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: scheme.onPrimary,
+        onPressed: () {},
+        child: Icon(Icons.refresh, size: 40),
+      ),
     );
   }
 }
